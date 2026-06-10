@@ -1,0 +1,24 @@
+name: Local CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  deploy:
+
+    runs-on: self-hosted
+
+    steps:
+
+    - name: Checkout Source Code
+      uses: actions/checkout@v4
+
+    - name: Make Scripts Executable
+      run: chmod +x scripts/*.sh
+
+    - name: Run Deployment
+      run: |
+        ./scripts/deploy.sh
